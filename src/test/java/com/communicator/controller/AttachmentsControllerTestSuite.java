@@ -1,6 +1,6 @@
 package com.communicator.controller;
 
-import com.communicator.domain.*;
+import com.communicator.domain.AttachmentsDto;
 import com.communicator.facade.AttachmentsFacade;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -29,6 +29,14 @@ public class AttachmentsControllerTestSuite {
     private MockMvc mockMvc;
     @MockBean
     private AttachmentsFacade facade;
+
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Test
     public void getAllAttachments() throws Exception {
@@ -106,13 +114,5 @@ public class AttachmentsControllerTestSuite {
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.fileName", is("googlePic")))
                 .andExpect(jsonPath("$.filePath", is("https://google.com")));
-    }
-
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 }

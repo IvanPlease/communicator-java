@@ -21,21 +21,21 @@ public class GroupMessageService {
     private final NotificationService service;
     private final GroupMessageMapper mapper;
 
-    public List<GroupMessageDto> getAll(){
+    public List<GroupMessageDto> getAll() {
         return mapper.mapToGroupMessageDtoList(repository.findAll());
     }
 
     public GroupMessageDto getById(Long id) {
-        try{
+        try {
             GroupMessage groupMessage = repository.findById(id).orElseThrow(GroupMessageNotFoundException::new);
             return mapper.mapToGroupMessageDto(groupMessage);
-        }catch (GroupMessageNotFoundException e){
+        } catch (GroupMessageNotFoundException e) {
             log.error(e.getMessage());
         }
         return GroupMessageDto.builder().build();
     }
 
-    public GroupMessageDto create(GroupMessageDto groupMessageDto){
+    public GroupMessageDto create(GroupMessageDto groupMessageDto) {
         GroupMessage mappedConversation = mapper.mapToGroupMessage(groupMessageDto);
         GroupMessage savedConversation = repository.save(mappedConversation);
         NotificationDto notificationDto = NotificationDto.builder()
@@ -55,9 +55,9 @@ public class GroupMessageService {
 
     public Integer getUnReadMessages(Long convId, Long userId) {
         GroupMessage fetchedConversation = GroupMessage.builder().build();
-        try{
+        try {
             fetchedConversation = repository.findById(convId).orElseThrow(GroupMessageNotFoundException::new);
-        }catch (GroupMessageNotFoundException e){
+        } catch (GroupMessageNotFoundException e) {
             log.info(e.getMessage());
         }
         return (int) fetchedConversation.getMessagesInConv().stream().filter(m -> m.getAuthor().getId().equals(userId) && !m.isRead()).count();

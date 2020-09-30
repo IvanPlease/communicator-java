@@ -42,8 +42,8 @@ public class GroupMessageServiceTestSuite {
     @Test
     public void getAll() {
         //Given
-        List<User> users =new ArrayList<>();
-        List<UserConvDto> userConvDtos =new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        List<UserConvDto> userConvDtos = new ArrayList<>();
         User user = User.builder()
                 .id(1L)
                 .firstname("Jan")
@@ -97,8 +97,8 @@ public class GroupMessageServiceTestSuite {
     @Test
     public void getById() {
         //Given
-        List<User> users =new ArrayList<>();
-        List<UserConvDto> userConvDtos =new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        List<UserConvDto> userConvDtos = new ArrayList<>();
         User user = User.builder()
                 .id(1L)
                 .firstname("Jan")
@@ -133,8 +133,8 @@ public class GroupMessageServiceTestSuite {
     @Test
     public void create() {
         //Given
-        List<User> users =new ArrayList<>();
-        List<UserConvDto> userConvDtos =new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        List<UserConvDto> userConvDtos = new ArrayList<>();
         User user = User.builder()
                 .id(1L)
                 .firstname("Jan")
@@ -204,7 +204,7 @@ public class GroupMessageServiceTestSuite {
     @Test
     public void getUnReadMessages() {
         //Given
-        List<User> users =new ArrayList<>();
+        List<User> users = new ArrayList<>();
         User user = User.builder()
                 .id(1L)
                 .firstname("Jan")

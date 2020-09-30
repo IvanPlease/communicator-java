@@ -33,6 +33,14 @@ public class UserControllerTestSuite {
     @MockBean
     private UserFacade facade;
 
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Test
     public void shouldFetchAllUsers() throws Exception {
         //Given
@@ -245,14 +253,6 @@ public class UserControllerTestSuite {
                 .andExpect(jsonPath("$.firstname", is("Jan")))
                 .andExpect(jsonPath("$.lastname", is("Szewczyk")))
                 .andExpect(jsonPath("$.email", is("szewczykjan2@gmail.com")));
-    }
-
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
 }

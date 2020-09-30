@@ -1,6 +1,6 @@
 package com.communicator.facade;
 
-import com.communicator.domain.*;
+import com.communicator.domain.AttachmentsDto;
 import com.communicator.service.AttachmentsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,23 +14,23 @@ import java.util.List;
 public class AttachmentsFacade {
     private final AttachmentsService service;
 
-    public List<AttachmentsDto> getAllAttachments(){
+    public List<AttachmentsDto> getAllAttachments() {
         return service.getAll();
     }
 
-    public AttachmentsDto getAttachmentById(Long id){
+    public AttachmentsDto getAttachmentById(Long id) {
         return service.getById(id);
     }
 
-    public AttachmentsDto createAttachment(AttachmentsDto attachmentsDto){
+    public AttachmentsDto createAttachment(AttachmentsDto attachmentsDto) {
         return service.create(attachmentsDto);
     }
 
-    public AttachmentsDto updateAttachment(AttachmentsDto attachmentsDto){
+    public AttachmentsDto updateAttachment(AttachmentsDto attachmentsDto) {
         return service.update(attachmentsDto);
     }
 
-    public void deleteAttachment(Long id){
+    public void deleteAttachment(Long id) {
         service.delete(id);
     }
 

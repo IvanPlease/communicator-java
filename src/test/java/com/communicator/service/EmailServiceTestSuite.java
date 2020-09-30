@@ -20,8 +20,9 @@ public class EmailServiceTestSuite {
     private EmailService simpleEmailService;
     @Mock
     private JavaMailSender javaMailSender;
+
     @Test
-    public void shouldSendEmail(){
+    public void shouldSendEmail() {
         //Given
         UserDto userDto = UserDto.builder()
                 .id(1L)

@@ -24,7 +24,7 @@ public class MessageService {
     private final NotificationService service;
 
     @Transactional
-    public MessageDto create(MessageDto messageDto){
+    public MessageDto create(MessageDto messageDto) {
         Message mappedMessage = mapper.mapToMessage(messageDto);
         Message savedMessage = repository.save(mappedMessage);
         List<String> params = new ArrayList<>();
@@ -40,27 +40,27 @@ public class MessageService {
     }
 
     private void isMessageExisting(Long userId) {
-        try{
-            if(!repository.existsById(userId)){
+        try {
+            if (!repository.existsById(userId)) {
                 throw new MessageDontExistsException();
             }
-        }catch (MessageDontExistsException e){
+        } catch (MessageDontExistsException e) {
             log.error(e.getMessage());
         }
     }
 
     public MessageDto changeToRead(Long id) {
-        try{
-            if(id != null){
+        try {
+            if (id != null) {
                 isMessageExisting(id);
-            }else{
+            } else {
                 throw new MessageNotFoundException();
             }
             Message fetchedMessage = repository.getOne(id);
             fetchedMessage.setRead(true);
             Message savedMessage = repository.save(fetchedMessage);
             return mapper.mapToMessageDto(savedMessage);
-        }catch (MessageNotFoundException e){
+        } catch (MessageNotFoundException e) {
             log.error(e.getMessage());
         }
         return MessageDto.builder().build();

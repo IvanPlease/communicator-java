@@ -1,7 +1,8 @@
 package com.communicator.service;
 
-import com.communicator.domain.*;
-import com.communicator.exception.*;
+import com.communicator.domain.NotificationDto;
+import com.communicator.exception.MessageDontExistsException;
+import com.communicator.exception.NotificationDontExistsException;
 import com.communicator.mapper.NotificationMapper;
 import com.communicator.service.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,27 +18,26 @@ public class NotificationService {
     private final NotificationRepository repository;
     private final NotificationMapper mapper;
 
-    public NotificationDto create(NotificationDto notificationDto){
+    public NotificationDto create(NotificationDto notificationDto) {
         return mapper.mapToNotificationDto(repository.save(mapper.mapToNotification(notificationDto)));
     }
 
-    public void delete(Long id){
-        try{
+    public void delete(Long id) {
+        try {
             isNotificationExisting(id);
             repository.deleteById(id);
-        }catch (NotificationDontExistsException e){
+        } catch (NotificationDontExistsException e) {
             log.info(e.getMessage());
         }
     }
 
 
-
     private void isNotificationExisting(Long id) {
-        try{
-            if(!repository.existsById(id)){
+        try {
+            if (!repository.existsById(id)) {
                 throw new NotificationDontExistsException();
             }
-        }catch (MessageDontExistsException e){
+        } catch (MessageDontExistsException e) {
             log.error(e.getMessage());
         }
     }

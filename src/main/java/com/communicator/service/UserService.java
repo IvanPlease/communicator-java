@@ -22,25 +22,25 @@ public class UserService {
     private final UserRepository repository;
     private final UserMapper mapper;
 
-    public List<UserDto> getAll(){
+    public List<UserDto> getAll() {
         return mapper.mapUserListToUserDtoList(repository.findAll());
     }
 
     public UserDto getById(Long id) {
-        try{
+        try {
             User user = repository.findById(id).orElseThrow(UserNotFoundException::new);
             return mapper.mapToUserDto(user);
-        }catch (UserNotFoundException e){
+        } catch (UserNotFoundException e) {
             log.error(e.getMessage());
         }
         return UserDto.builder().build();
     }
 
     public UserConvDto getConvById(Long id) {
-        try{
+        try {
             User user = repository.findById(id).orElseThrow(UserNotFoundException::new);
             return mapper.mapToUserConvDto(user);
-        }catch (UserNotFoundException e){
+        } catch (UserNotFoundException e) {
             log.error(e.getMessage());
         }
         return UserConvDto.builder().build();
@@ -59,15 +59,15 @@ public class UserService {
     }
 
     List<UserSearchDto> getUserSearchDtos(List<User> usersTypeA, List<User> usersTypeB) {
-        try{
-            if(usersTypeA.size() > usersTypeB.size()){
+        try {
+            if (usersTypeA.size() > usersTypeB.size()) {
                 return mapper.mapUserListToUserSearchDtoList(usersTypeA);
-            }else if(usersTypeB.size() > usersTypeA.size()){
+            } else if (usersTypeB.size() > usersTypeA.size()) {
                 return mapper.mapUserListToUserSearchDtoList(usersTypeB);
-            }else{
+            } else {
                 throw new UserNotFoundException();
             }
-        }catch (UserNotFoundException e){
+        } catch (UserNotFoundException e) {
             log.error(e.getMessage());
         }
         return new ArrayList<>();
@@ -80,23 +80,23 @@ public class UserService {
     }
 
     @Transactional
-    public UserDto create(UserDto userDto){
-        try{
-            if(!isUserExistingByData(mapper.mapToUserDataChecker(userDto))){
+    public UserDto create(UserDto userDto) {
+        try {
+            if (!isUserExistingByData(mapper.mapToUserDataChecker(userDto))) {
                 User mappedUser = mapper.mapToUser(userDto);
                 mappedUser.setCreationDate(new Date());
                 return mapper.mapToUserDto(repository.save(mappedUser));
-            }else{
+            } else {
                 throw new UserExistsException();
             }
-        }catch (UserExistsException e){
+        } catch (UserExistsException e) {
             log.error(e.getMessage());
         }
         return new UserDto();
     }
 
-    public UserDto update(UserDto userDto){
-        if(userDto.getId() != null){
+    public UserDto update(UserDto userDto) {
+        if (userDto.getId() != null) {
             isUserExisting(userDto.getId());
         }
         User mappedUser = mapper.mapToUser(userDto);
@@ -105,11 +105,11 @@ public class UserService {
     }
 
     private void isUserExisting(Long userId) {
-        try{
-            if(!repository.existsById(userId)){
+        try {
+            if (!repository.existsById(userId)) {
                 throw new UserDontExistsException();
             }
-        }catch (UserDontExistsException e){
+        } catch (UserDontExistsException e) {
             log.error(e.getMessage());
         }
     }
@@ -118,7 +118,7 @@ public class UserService {
         return mapper.mapToUserDto(repository.getByFirstnameAndLastnameAndEmail(firstname, lastname, email));
     }
 
-    public boolean isUserExistingByData(UserDataChecker userDataChecker){
-        return repository.existsByFirstnameAndLastnameAndEmail(userDataChecker.getFirstname(),userDataChecker.getLastname(),userDataChecker.getEmail());
+    public boolean isUserExistingByData(UserDataChecker userDataChecker) {
+        return repository.existsByFirstnameAndLastnameAndEmail(userDataChecker.getFirstname(), userDataChecker.getLastname(), userDataChecker.getEmail());
     }
 }

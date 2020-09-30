@@ -10,6 +10,8 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AttachmentsMapper {
     Attachments mapToAttachments(AttachmentsDto attachmentsDto);
+
     AttachmentsDto mapToAttachmentsDto(Attachments attachments);
+
     List<AttachmentsDto> mapToAttachmentsDtoList(List<Attachments> attachmentsList);
 }

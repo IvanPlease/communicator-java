@@ -27,23 +27,23 @@ public class EmailScheduler {
     private final UserService userService;
 
     @Scheduled(cron = "0 0 * * * *")
-    public void countUnreadMessages(){
+    public void countUnreadMessages() {
         List<GroupMessageDto> conv = groupMessageService.getAll();
         List<UserDto> users = userService.getAll();
         HashMap<Long, AtomicInteger> countUnreadArray = new HashMap<>();
         AtomicInteger countUnread = new AtomicInteger();
-        users.forEach(e-> countUnreadArray.put(e.getId(), new AtomicInteger()));
-        conv.forEach(c-> c.getUsersInConv().forEach(u->{
+        users.forEach(e -> countUnreadArray.put(e.getId(), new AtomicInteger()));
+        conv.forEach(c -> c.getUsersInConv().forEach(u -> {
             countUnread.set(0);
-            c.getMessagesInConv().forEach(m->{
-                if(!m.getAuthor().getId().equals(u.getId()) && !m.isRead()){
+            c.getMessagesInConv().forEach(m -> {
+                if (!m.getAuthor().getId().equals(u.getId()) && !m.isRead()) {
                     countUnread.getAndIncrement();
                 }
             });
             countUnreadArray.get(u.getId()).addAndGet(countUnread.intValue());
         }));
-        users.forEach(u->{
-            if(countUnreadArray.get(u.getId()).intValue()>0){
+        users.forEach(u -> {
+            if (countUnreadArray.get(u.getId()).intValue() > 0) {
                 Mail mail = Mail.builder()
                         .recipient(u)
                         .unreadMessage(countUnreadArray.get(u.getId()).longValue())

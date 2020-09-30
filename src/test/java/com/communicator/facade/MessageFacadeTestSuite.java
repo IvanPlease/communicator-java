@@ -28,7 +28,7 @@ public class MessageFacadeTestSuite {
     @Test
     public void create() {
         //Given
-        List<UserConvDto> userConvDtos =new ArrayList<>();
+        List<UserConvDto> userConvDtos = new ArrayList<>();
         UserConvDto userDto = UserConvDto.builder()
                 .id(1L)
                 .firstname("Jan")
@@ -57,8 +57,8 @@ public class MessageFacadeTestSuite {
     @Test
     public void changeToRead() {
         //Given
-        List<User> users =new ArrayList<>();
-        List<UserConvDto> userConvDtos =new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        List<UserConvDto> userConvDtos = new ArrayList<>();
         User user = User.builder()
                 .id(1L)
                 .firstname("Jan")
@@ -102,8 +102,8 @@ public class MessageFacadeTestSuite {
         //Given
         assertEquals(fetchMessage.getId(), message.getId());
         assertEquals(fetchMessage.getContent(), message.getContent());
-        assertEquals(fetchMessage.getAuthor().getId(),message.getAuthor().getId());
-        assertEquals(fetchMessage.getAuthor().getFirstname(),message.getAuthor().getFirstname());
-        assertEquals(fetchMessage.getAuthor().getLastname(),message.getAuthor().getLastname());
+        assertEquals(fetchMessage.getAuthor().getId(), message.getAuthor().getId());
+        assertEquals(fetchMessage.getAuthor().getFirstname(), message.getAuthor().getFirstname());
+        assertEquals(fetchMessage.getAuthor().getLastname(), message.getAuthor().getLastname());
     }
 }

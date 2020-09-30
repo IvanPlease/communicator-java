@@ -15,12 +15,12 @@ public class MessageController {
     private final MessageFacade facade;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public MessageDto createMessage(@RequestBody MessageDto messageDto){
+    public MessageDto createMessage(@RequestBody MessageDto messageDto) {
         return facade.createMessage(messageDto);
     }
 
-    @PutMapping(value = "/read/{id}",consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public MessageDto updateMessage(@PathVariable Long id){
+    @PutMapping(value = "/read/{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    public MessageDto updateMessage(@PathVariable Long id) {
         return facade.updateMessage(id);
     }
 }

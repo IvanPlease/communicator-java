@@ -15,27 +15,26 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class EmailService {
 
+    private final static String dailySubject = "Masz nowe nieprzeczytane wiadomości";
     private final JavaMailSender javaMailSender;
     private final MailCreatorService mailCreatorService;
 
-    private final static String dailySubject = "Masz nowe nieprzeczytane wiadomości";
-
-    public void send(final Mail mail, int type){
+    public void send(final Mail mail, int type) {
         log.info("Starting email preparation...");
-        if(type != 0){
-            try{
+        if (type != 0) {
+            try {
                 MimeMessagePreparator mimeMessage = createMimeMessage(mail);
                 javaMailSender.send(mimeMessage);
-            }catch (MailException e){
+            } catch (MailException e) {
                 log.error("Failed to process email sending: {}", e.getMessage());
             }
-        }else{
+        } else {
             SimpleMailMessage simpleMailMessage = createMailMessage(mail);
             javaMailSender.send(simpleMailMessage);
         }
     }
 
-    private MimeMessagePreparator createMimeMessage(final Mail mail){
+    private MimeMessagePreparator createMimeMessage(final Mail mail) {
         return mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setTo(mail.getRecipient().getEmail());
@@ -44,7 +43,7 @@ public class EmailService {
         };
     }
 
-    private SimpleMailMessage createMailMessage(final Mail mail){
+    private SimpleMailMessage createMailMessage(final Mail mail) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getRecipient().getEmail());
         mailMessage.setSubject(dailySubject);

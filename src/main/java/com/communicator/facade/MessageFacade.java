@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
 public class MessageFacade {
     private final MessageService service;
 
-    public MessageDto createMessage(MessageDto messageDto){
+    public MessageDto createMessage(MessageDto messageDto) {
         return service.create(messageDto);
     }
 
-    public MessageDto updateMessage(Long id){
+    public MessageDto updateMessage(Long id) {
         return service.changeToRead(id);
     }
 

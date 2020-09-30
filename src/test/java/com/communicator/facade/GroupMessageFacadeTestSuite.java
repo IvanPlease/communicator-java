@@ -30,8 +30,8 @@ public class GroupMessageFacadeTestSuite {
     @Test
     public void getById() {
         //Given
-        List<User> users =new ArrayList<>();
-        List<UserConvDto> userConvDtos =new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        List<UserConvDto> userConvDtos = new ArrayList<>();
         User user = User.builder()
                 .id(1L)
                 .firstname("Jan")
@@ -65,8 +65,8 @@ public class GroupMessageFacadeTestSuite {
     @Test
     public void create() {
         //Given
-        List<User> users =new ArrayList<>();
-        List<UserConvDto> userConvDtos =new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        List<UserConvDto> userConvDtos = new ArrayList<>();
         User user = User.builder()
                 .id(1L)
                 .firstname("Jan")
@@ -100,8 +100,8 @@ public class GroupMessageFacadeTestSuite {
     @Test
     public void getByUserId() {
         //Given
-        List<User> users =new ArrayList<>();
-        List<UserConvDto> usersDto =new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        List<UserConvDto> usersDto = new ArrayList<>();
         User user = User.builder()
                 .id(1L)
                 .firstname("Jan")
@@ -162,7 +162,7 @@ public class GroupMessageFacadeTestSuite {
     @Test
     public void testGetUnReadMessages() {
         //Given
-        List<User> users =new ArrayList<>();
+        List<User> users = new ArrayList<>();
         User user = User.builder()
                 .id(1L)
                 .firstname("Jan")

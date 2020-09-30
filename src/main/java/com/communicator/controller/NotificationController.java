@@ -17,17 +17,17 @@ public class NotificationController {
     private final NotificationFacade facade;
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public NotificationDto createNotification(@RequestBody NotificationDto notificationDto){
+    public NotificationDto createNotification(@RequestBody NotificationDto notificationDto) {
         return facade.createNotification(notificationDto);
     }
 
     @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
-    public List<NotificationDto> getUsersNotifications(@PathVariable Long id){
+    public List<NotificationDto> getUsersNotifications(@PathVariable Long id) {
         return facade.getAllNotifications(id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteNotification(@PathVariable Long id){
+    public void deleteNotification(@PathVariable Long id) {
         facade.deleteNotification(id);
     }
 

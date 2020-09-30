@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -51,7 +51,7 @@ public class UserFacadeTestSuite {
         List<UserDto> fetchedUsers = facade.getAllUsers();
         //Then
         assertEquals(fetchedUsers.size(), users.size());
-        for(int i=0;i<fetchedUsers.size();i++){
+        for (int i = 0; i < fetchedUsers.size(); i++) {
             assertEquals(fetchedUsers.get(i).getId(), users.get(i).getId());
             assertEquals(fetchedUsers.get(i).getFirstname(), users.get(i).getFirstname());
             assertEquals(fetchedUsers.get(i).getLastname(), users.get(i).getLastname());
@@ -223,7 +223,7 @@ public class UserFacadeTestSuite {
         searchDtos.add(userDto);
         when(service.getBySingleNamePattern("Jan")).thenReturn(searchDtos);
         //When
-        List<UserSearchDto> fetchedUsers = facade.getUserByRegexPattern(0L,"Jan");
+        List<UserSearchDto> fetchedUsers = facade.getUserByRegexPattern(0L, "Jan");
         //Then
         assertEquals(fetchedUsers.get(0).getId(), userDto.getId());
         assertEquals(fetchedUsers.get(0).getFirstname(), userDto.getFirstname());
@@ -244,7 +244,7 @@ public class UserFacadeTestSuite {
         params.add("Szew");
         when(service.getByNamePattern(params)).thenReturn(searchDtos);
         //When
-        List<UserSearchDto> fetchedUsers = facade.getUserByRegexPattern(1L,"Jan Szew");
+        List<UserSearchDto> fetchedUsers = facade.getUserByRegexPattern(1L, "Jan Szew");
         //Then
         assertEquals(fetchedUsers.get(0).getId(), userDto.getId());
         assertEquals(fetchedUsers.get(0).getFirstname(), userDto.getFirstname());
@@ -262,7 +262,7 @@ public class UserFacadeTestSuite {
         searchDtos.add(userDto);
         when(service.getByMailPattern("szewczykjan2@gmail.com")).thenReturn(searchDtos);
         //When
-        List<UserSearchDto> fetchedUsers = facade.getUserByRegexPattern(2L,"szewczykjan2@gmail.com");
+        List<UserSearchDto> fetchedUsers = facade.getUserByRegexPattern(2L, "szewczykjan2@gmail.com");
         //Then
         assertEquals(fetchedUsers.get(0).getId(), userDto.getId());
         assertEquals(fetchedUsers.get(0).getFirstname(), userDto.getFirstname());

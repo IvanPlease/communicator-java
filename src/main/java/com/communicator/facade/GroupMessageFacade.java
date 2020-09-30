@@ -14,11 +14,11 @@ import java.util.List;
 public class GroupMessageFacade {
     private final GroupMessageService service;
 
-    public GroupMessageDto createConversation(GroupMessageDto conversationDto){
+    public GroupMessageDto createConversation(GroupMessageDto conversationDto) {
         return service.create(conversationDto);
     }
 
-    public List<Long> searchForAllConversations(Long authorId){
+    public List<Long> searchForAllConversations(Long authorId) {
         return service.getByUserId(authorId);
     }
 

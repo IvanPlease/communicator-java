@@ -1,7 +1,10 @@
 package com.communicator.service;
 
 
-import com.communicator.domain.*;
+import com.communicator.domain.User;
+import com.communicator.domain.UserConvDto;
+import com.communicator.domain.UserDataChecker;
+import com.communicator.domain.UserDto;
 import com.communicator.mapper.UserMapper;
 import com.communicator.service.repository.UserRepository;
 import org.junit.Test;

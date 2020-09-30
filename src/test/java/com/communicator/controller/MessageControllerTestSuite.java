@@ -33,6 +33,14 @@ public class MessageControllerTestSuite {
     @MockBean
     private MessageFacade facade;
 
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Test
     public void shouldCreateMessage() throws Exception {
         //Given
@@ -100,14 +108,6 @@ public class MessageControllerTestSuite {
                 .andExpect(jsonPath("$.content", is("Hello")))
                 .andExpect(jsonPath("$.groupMessage.usersInConv", hasSize(1)));
 
-    }
-
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
 }

@@ -20,22 +20,22 @@ public class AttachmentsService {
     private final AttachmentsRepository repository;
     private final AttachmentsMapper mapper;
 
-    public List<AttachmentsDto> getAll(){
+    public List<AttachmentsDto> getAll() {
         return mapper.mapToAttachmentsDtoList(repository.findAll());
     }
 
     public AttachmentsDto getById(Long id) {
-        try{
+        try {
             Attachments attachments = repository.findById(id).orElseThrow(AttachmentNotFoundException::new);
             return mapper.mapToAttachmentsDto(attachments);
-        }catch (AttachmentNotFoundException e){
+        } catch (AttachmentNotFoundException e) {
             log.error(e.getMessage());
         }
         return AttachmentsDto.builder().build();
     }
 
-    public AttachmentsDto create(AttachmentsDto attachmentsDto){
-        if(attachmentsDto.getId() != null){
+    public AttachmentsDto create(AttachmentsDto attachmentsDto) {
+        if (attachmentsDto.getId() != null) {
             isAttachmentNotExisting(attachmentsDto.getId());
         }
         Attachments mappedAttachments = mapper.mapToAttachments(attachmentsDto);
@@ -43,34 +43,34 @@ public class AttachmentsService {
         return mapper.mapToAttachmentsDto(savedAttachments);
     }
 
-    public AttachmentsDto update(AttachmentsDto attachmentsDto){
+    public AttachmentsDto update(AttachmentsDto attachmentsDto) {
         isAttachmentExisting(attachmentsDto.getId());
         Attachments mappedAttachments = mapper.mapToAttachments(attachmentsDto);
         Attachments savedAttachments = repository.save(mappedAttachments);
         return mapper.mapToAttachmentsDto(savedAttachments);
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         isAttachmentNotExisting(id);
         repository.deleteById(id);
     }
 
     private void isAttachmentNotExisting(Long userId) {
         try {
-            if(!repository.existsById(userId)){
+            if (!repository.existsById(userId)) {
                 throw new AttachmentDontExistsException();
             }
-        }catch (AttachmentDontExistsException e){
+        } catch (AttachmentDontExistsException e) {
             log.error(e.getMessage());
         }
     }
 
     private void isAttachmentExisting(Long userId) {
         try {
-            if(repository.existsById(userId)){
+            if (repository.existsById(userId)) {
                 throw new AttachmentExistsException();
             }
-        }catch (AttachmentDontExistsException e){
+        } catch (AttachmentDontExistsException e) {
             log.error(e.getMessage());
         }
     }

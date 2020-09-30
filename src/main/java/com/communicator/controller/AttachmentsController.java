@@ -17,27 +17,27 @@ public class AttachmentsController {
     private final AttachmentsFacade facade;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    public List<AttachmentsDto> getAllAttachments(){
+    public List<AttachmentsDto> getAllAttachments() {
         return facade.getAllAttachments();
     }
 
     @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
-    public AttachmentsDto getAttachmentById(@PathVariable Long id){
+    public AttachmentsDto getAttachmentById(@PathVariable Long id) {
         return facade.getAttachmentById(id);
     }
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public AttachmentsDto createAttachment(@RequestBody AttachmentsDto attachmentsDto){
+    public AttachmentsDto createAttachment(@RequestBody AttachmentsDto attachmentsDto) {
         return facade.createAttachment(attachmentsDto);
     }
 
     @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public AttachmentsDto updateAttachment(@RequestBody AttachmentsDto attachmentsDto){
+    public AttachmentsDto updateAttachment(@RequestBody AttachmentsDto attachmentsDto) {
         return facade.updateAttachment(attachmentsDto);
     }
 
     @DeleteMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public void deleteAttachment(@PathVariable Long id){
+    public void deleteAttachment(@PathVariable Long id) {
         facade.deleteAttachment(id);
     }
 

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
@@ -41,8 +41,8 @@ public class MessageServiceTestSuite {
     @Test
     public void create() {
         //Given
-        List<User> users =new ArrayList<>();
-        List<UserConvDto> userConvDtos =new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        List<UserConvDto> userConvDtos = new ArrayList<>();
         User user = User.builder()
                 .id(1L)
                 .firstname("Jan")
@@ -106,8 +106,8 @@ public class MessageServiceTestSuite {
     @Test
     public void changeToRead() {
         //Given
-        List<User> users =new ArrayList<>();
-        List<UserConvDto> userConvDtos =new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        List<UserConvDto> userConvDtos = new ArrayList<>();
         User user = User.builder()
                 .id(1L)
                 .firstname("Jan")
@@ -153,8 +153,8 @@ public class MessageServiceTestSuite {
         //Given
         assertEquals(fetchMessage.getId(), message.getId());
         assertEquals(fetchMessage.getContent(), message.getContent());
-        assertEquals(fetchMessage.getAuthor().getId(),message.getAuthor().getId());
-        assertEquals(fetchMessage.getAuthor().getFirstname(),message.getAuthor().getFirstname());
-        assertEquals(fetchMessage.getAuthor().getLastname(),message.getAuthor().getLastname());
+        assertEquals(fetchMessage.getAuthor().getId(), message.getAuthor().getId());
+        assertEquals(fetchMessage.getAuthor().getFirstname(), message.getAuthor().getFirstname());
+        assertEquals(fetchMessage.getAuthor().getLastname(), message.getAuthor().getLastname());
     }
 }

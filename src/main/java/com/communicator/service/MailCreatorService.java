@@ -14,7 +14,7 @@ public class MailCreatorService {
     private final TemplateEngine templateEngine;
     private final AdminConfig adminConfig;
 
-    public String buildDailyReportMail(final Mail mail){
+    public String buildDailyReportMail(final Mail mail) {
         Context context = new Context();
         context.setVariable("userData", mail.getRecipient());
         context.setVariable("unreadMessages", mail.getUnreadMessage().toString());

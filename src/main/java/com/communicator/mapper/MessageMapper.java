@@ -11,9 +11,14 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface MessageMapper {
     Message mapToMessage(MessageBlopDto messageBlopDto);
+
     Message mapToMessage(MessageDto messageDto);
+
     MessageBlopDto mapToMessageBlopDto(Message message);
+
     MessageDto mapToMessageDto(Message message);
+
     List<Message> mapMessageBlopDtoListToMessageList(List<MessageBlopDto> messageBlopDtoList);
+
     List<MessageBlopDto> mapMessageListToMessageBlopList(List<Message> messageBlopDtoList);
 }

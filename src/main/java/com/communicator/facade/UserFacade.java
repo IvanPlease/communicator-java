@@ -19,51 +19,51 @@ public class UserFacade {
     private final UserService service;
     private final UserStatusToggle toggle;
 
-    public List<UserDto> getAllUsers(){
+    public List<UserDto> getAllUsers() {
         return service.getAll();
     }
 
-    public UserDto getUserById(Long id){
+    public UserDto getUserById(Long id) {
         return service.getById(id);
     }
 
-    public UserConvDto getUserConvById(Long id){
+    public UserConvDto getUserConvById(Long id) {
         return service.getConvById(id);
     }
 
-    public UserDto createUser(UserDto userDto){
+    public UserDto createUser(UserDto userDto) {
         return service.create(userDto);
     }
 
-    public UserDto updateUser(UserDto userDto){
+    public UserDto updateUser(UserDto userDto) {
         return service.update(userDto);
     }
 
-    public UserDto changeActivated(Long id, boolean value){
+    public UserDto changeActivated(Long id, boolean value) {
         UserDto fetchedUser = service.getById(id);
         UserDto toggledUser = toggle.statusChanger(fetchedUser, true, value);
         return service.update(toggledUser);
     }
 
-    public UserDto changeBanned(Long id, boolean value){
+    public UserDto changeBanned(Long id, boolean value) {
         UserDto fetchedUser = service.getById(id);
         UserDto toggledUser = toggle.statusChanger(fetchedUser, false, value);
         return service.update(toggledUser);
     }
 
-    public UserDto changeStatus(Long id, int status){
+    public UserDto changeStatus(Long id, int status) {
         UserDto fetchedUser = service.getById(id);
         UserDto toggledUser = toggle.statusChanger(fetchedUser, status);
         return service.update(toggledUser);
     }
 
     public List<UserSearchDto> getUserByRegexPattern(Long type, String pattern) {
-        if(type == 0){
+        if (type == 0) {
             return service.getBySingleNamePattern(pattern);
-        }else if(type == 1){
+        } else if (type == 1) {
             List<String> patterns = Arrays.asList(pattern.split(" "));
             return service.getByNamePattern(patterns);
-        }else{
+        } else {
             return service.getByMailPattern(pattern);
         }
     }

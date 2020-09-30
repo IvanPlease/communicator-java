@@ -1,6 +1,9 @@
 package com.communicator.service;
 
-import com.communicator.domain.*;
+import com.communicator.domain.Notification;
+import com.communicator.domain.NotificationDto;
+import com.communicator.domain.User;
+import com.communicator.domain.UserConvDto;
 import com.communicator.mapper.NotificationMapper;
 import com.communicator.service.repository.NotificationRepository;
 import org.junit.Test;
@@ -15,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
@@ -64,9 +67,9 @@ public class NotificationServiceTestSuite {
         //Given
         assertEquals(fetchedNotificationDto.getId(), notification.getId());
         assertEquals(fetchedNotificationDto.getTypeOfOperation(), notification.getTypeOfOperation());
-        assertEquals(fetchedNotificationDto.getReceiver().getId(),notification.getReceiver().getId());
-        assertEquals(fetchedNotificationDto.getReceiver().getFirstname(),notification.getReceiver().getFirstname());
-        assertEquals(fetchedNotificationDto.getReceiver().getLastname(),notification.getReceiver().getLastname());
+        assertEquals(fetchedNotificationDto.getReceiver().getId(), notification.getReceiver().getId());
+        assertEquals(fetchedNotificationDto.getReceiver().getFirstname(), notification.getReceiver().getFirstname());
+        assertEquals(fetchedNotificationDto.getReceiver().getLastname(), notification.getReceiver().getLastname());
     }
 
     @Test
@@ -107,8 +110,8 @@ public class NotificationServiceTestSuite {
         //Given
         assertEquals(fetchedNotificationDto.get(0).getId(), notification.getId());
         assertEquals(fetchedNotificationDto.get(0).getTypeOfOperation(), notification.getTypeOfOperation());
-        assertEquals(fetchedNotificationDto.get(0).getReceiver().getId(),notification.getReceiver().getId());
-        assertEquals(fetchedNotificationDto.get(0).getReceiver().getFirstname(),notification.getReceiver().getFirstname());
-        assertEquals(fetchedNotificationDto.get(0).getReceiver().getLastname(),notification.getReceiver().getLastname());
+        assertEquals(fetchedNotificationDto.get(0).getReceiver().getId(), notification.getReceiver().getId());
+        assertEquals(fetchedNotificationDto.get(0).getReceiver().getFirstname(), notification.getReceiver().getFirstname());
+        assertEquals(fetchedNotificationDto.get(0).getReceiver().getLastname(), notification.getReceiver().getLastname());
     }
 }

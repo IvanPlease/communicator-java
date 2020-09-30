@@ -10,6 +10,8 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface GroupMessageMapper {
     GroupMessage mapToGroupMessage(GroupMessageDto groupMessageDto);
+
     GroupMessageDto mapToGroupMessageDto(GroupMessage groupMessage);
+
     List<GroupMessageDto> mapToGroupMessageDtoList(List<GroupMessage> conversationList);
 }

@@ -33,6 +33,14 @@ public class NotificationControllerTestSuite {
     @MockBean
     private NotificationFacade facade;
 
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Test
     public void shouldCreateUser() throws Exception {
         //Given
@@ -96,14 +104,6 @@ public class NotificationControllerTestSuite {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200));
 
-    }
-
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
 }
